@@ -38,47 +38,62 @@ class _FavouritePageState extends State<FavouritePage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: lista.length,
-      itemBuilder: (context, index) {
-        return SingleChildScrollView(
-          child: SizedBox(
-            width: 300,
-            child: Card(
-              margin: EdgeInsets.only(left: 50, bottom: 100, top: 100),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Text(
-                      lista[index],
-                      style: TextStyle(fontSize: 20),
+    loadFavouriteDrinks();
+    if(lista.isEmpty){
+      return
+      Container(
+        alignment: Alignment.center,
+        child: Text("Aggiungi qualcosa nei preferiti",textAlign: TextAlign.center,style: TextStyle(
+          fontSize: 30,
+
+        ),),
+      );
+    }else{
+      return ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: lista.length,
+        itemBuilder: (context, index) {
+          return SingleChildScrollView(
+            child: SizedBox(
+              width: 300,
+              child: Card(
+                margin: const EdgeInsets.only(left: 50, bottom: 100, top: 100),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Text(
+                        lista[index],
+                        style: TextStyle(fontSize: 20),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Container(
-                        decoration:
-                        BoxDecoration(border: Border.all(width: 5,color: Colors.orangeAccent), borderRadius: BorderRadius.all(Radius.circular(10)) ),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) =>  DetailedDrink(title: lista[index], id: listaId[index],drinkImage: listaImg[index])),
-                            );
-                          },
-                          child: Image(
-                              image: NetworkImage(
-                                 listaImg[index])),
-                        )),
-                  )
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Container(
+                          decoration:
+                          BoxDecoration(border: Border.all(width: 5,color: Colors.orangeAccent), borderRadius: BorderRadius.all(Radius.circular(10)) ),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) =>  DetailedDrink(title: lista[index], id: listaId[index],drinkImage: listaImg[index])),
+                              );
+                            },
+                            child: Image(
+                                image: NetworkImage(
+                                    listaImg[index])),
+                          )),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      },
-    );
+          );
+        },
+      );
+    }
+
+
+
   }
 }

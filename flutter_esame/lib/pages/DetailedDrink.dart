@@ -196,8 +196,8 @@ class _DetailedDrinkState extends State<DetailedDrink> {
 
                   },
                   icon: controllo
-                      ? const Icon(Icons.star, size: 30)
-                      : const Icon(Icons.star_border_outlined, size: 30)),
+                      ? const Icon(Icons.star, size: 30,color: Colors.orangeAccent)
+                      : const Icon(Icons.star_border_outlined, size: 30),color: Colors.orangeAccent),
               const Text(
                 "Ingredienti:",
                 style: TextStyle(
